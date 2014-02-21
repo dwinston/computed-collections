@@ -1,0 +1,19 @@
+<head>
+  <title>computed-collection</title>
+</head>
+
+<body>
+  {{> games}}
+</body>
+
+<template name="games">
+  <h1>Relevant Games</h1>
+  <ol>
+    {{#each games}}
+      <li>
+        {{involvement}} in game {{distance}} miles away
+        that {{when}}
+      </li>
+    {{/each}}
+  </ol>
+</template>
