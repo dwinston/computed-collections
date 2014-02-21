@@ -55,8 +55,9 @@ if (Meteor.isServer) {
     }).observeChanges({
       added: function (id, fields) {
         RelevantGames.insert(_.extend(fields, {
-          relevance: (_.contains(fields.players, self.userId)) ?
-            1 : 0, // extensible to several levels of relevance
+          // extensible to several levels of relevance
+          relevance: ((fields.startsAt > Date.now()) ? 10 : 0)
+            + ((_.contains(fields.players, self.userId)) ? 1 : 0),
           timeFromNow: Math.abs(fields.startsAt - Date.now())
         }));
       }
